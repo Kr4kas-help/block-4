@@ -1,0 +1,2444 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MONE Сочи — Премиальные номера в отеле | Отдых в Адлере</title>
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/Kr4kas-help/block-4/main/%D1%84%D0%B0%D0%B2%D0%B8%D0%BA%D0%BE%D0%BD.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-dark: #1a1a1a;
+            --secondary-dark: #2d2d2d;
+            --accent: #b8956b;
+            --accent-light: #c9a87c;
+            --bg-white: #ffffff;
+            --bg-beige: #f8f5f0;
+            --text-dark: #1a1a1a;
+            --text-light: #6b6b6b;
+            --text-lighter: #999;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* ==================== HEADER ==================== */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.4s ease;
+            background: transparent;
+        }
+
+        .header.scrolled {
+            background: rgba(26, 26, 26, 0.95);
+            padding: 15px 60px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: #fff;
+            letter-spacing: 3px;
+        }
+
+        .logo-sub {
+            font-family: 'Inter', sans-serif;
+            font-size: 9px;
+            letter-spacing: 4px;
+            color: var(--accent);
+            text-transform: uppercase;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 35px;
+        }
+
+        .nav a {
+            color: rgba(255,255,255,0.85);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav a:hover {
+            color: var(--accent);
+        }
+
+        .nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+
+        .nav a:hover::after {
+            width: 100%;
+        }
+
+        .btn-reservation {
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            padding: 12px 28px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-reservation:hover {
+            background: var(--accent-light);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(184, 149, 107, 0.4);
+        }
+
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .mobile-toggle span {
+            width: 25px;
+            height: 2px;
+            background: #fff;
+            transition: all 0.3s;
+        }
+
+        /* ==================== HERO ==================== */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 700px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .hero-video-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .hero-video-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(26,26,26,0.85) 0%, rgba(26,26,26,0.4) 50%, rgba(26,26,26,0.1) 100%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 0 60px;
+            max-width: 700px;
+        }
+
+        .hero-stars {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 20px;
+        }
+
+        .hero-stars span {
+            color: var(--accent);
+            font-size: 18px;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 52px;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.15;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        .hero-title span {
+            color: var(--accent);
+        }
+
+        .hero-subtitle {
+            font-size: 17px;
+            color: rgba(255,255,255,0.8);
+            line-height: 1.7;
+            margin-bottom: 35px;
+            font-weight: 300;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            padding: 16px 40px;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(184, 149, 107, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.4);
+            padding: 15px 35px;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255,255,255,0.5);
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            animation: scrollBounce 2s infinite;
+        }
+
+        .hero-scroll .line {
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(to bottom, var(--accent), transparent);
+        }
+
+        @keyframes scrollBounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(8px); }
+        }
+
+        /* ==================== FEATURES ==================== */
+        .features {
+            padding: 80px 60px;
+            background: var(--bg-white);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        .feature-icon {
+            width: 56px;
+            height: 56px;
+            margin: 0 auto 20px;
+            color: var(--accent);
+        }
+
+        .feature-icon svg {
+            width: 100%;
+            height: 100%;
+            stroke: var(--accent);
+            fill: none;
+            stroke-width: 1.5;
+        }
+
+        .feature-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--text-dark);
+        }
+
+        .feature-desc {
+            font-size: 14px;
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        /* ==================== WELCOME ==================== */
+        .welcome {
+            padding: 100px 60px;
+            background: var(--bg-white);
+        }
+
+        .welcome-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        .welcome-images {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .welcome-img {
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .welcome-img:first-child {
+            grid-row: span 2;
+        }
+
+        .welcome-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s;
+        }
+
+        .welcome-img:hover img {
+            transform: scale(1.05);
+        }
+
+        .welcome-img img {
+            min-height: 200px;
+        }
+
+        .welcome-img:first-child img {
+            min-height: 420px;
+        }
+
+        .welcome-label {
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+
+        .welcome-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 38px;
+            font-weight: 600;
+            line-height: 1.25;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        .welcome-text {
+            font-size: 15px;
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .btn-read-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--accent);
+            color: #fff;
+            padding: 14px 32px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-read-more:hover {
+            background: var(--accent-light);
+            transform: translateY(-2px);
+        }
+
+        .btn-read-more svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* ==================== HIGHLIGHTS CAROUSEL ==================== */
+        .highlights {
+            position: relative;
+            height: 100vh;
+            min-height: 700px;
+            overflow: hidden;
+        }
+
+        .highlights-track {
+            height: 100%;
+            display: flex;
+            transition: transform 0.7s ease;
+        }
+
+        .highlight-slide {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            padding: 70px 60px;
+            color: #fff;
+        }
+
+        .highlight-slide img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+
+        .highlight-slide::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.58) 100%);
+            z-index: 1;
+        }
+
+        .highlight-caption {
+            position: relative;
+            z-index: 2;
+            max-width: 880px;
+            font-size: 26px;
+            line-height: 1.45;
+            font-family: 'Playfair Display', serif;
+            font-weight: 500;
+        }
+
+        .highlights-controls {
+            position: absolute;
+            left: 60px;
+            bottom: 26px;
+            z-index: 3;
+            display: flex;
+            gap: 10px;
+        }
+
+        .highlight-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 52px;
+            height: 52px;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            background: rgba(0, 0, 0, 0.25);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 4;
+            transition: all 0.3s;
+        }
+
+        .highlight-arrow:hover {
+            border-color: var(--accent);
+            background: rgba(184, 149, 107, 0.8);
+        }
+
+        .highlight-arrow svg {
+            width: 20px;
+            height: 20px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+        }
+
+        .highlight-arrow.prev {
+            left: 24px;
+        }
+
+        .highlight-arrow.next {
+            right: 24px;
+        }
+
+        .highlight-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .highlight-dot.active {
+            width: 26px;
+            border-radius: 6px;
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+
+        /* ==================== ROOMS ==================== */
+        .rooms {
+            padding: 100px 60px;
+            background: var(--bg-beige);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-label {
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 40px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .rooms-carousel {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .rooms-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .room-card {
+            min-width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            background: var(--bg-white);
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        }
+
+        .room-info {
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .room-price-label {
+            font-size: 13px;
+            color: var(--text-light);
+            margin-bottom: 4px;
+        }
+
+        .room-price {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 4px;
+        }
+
+        .room-price span {
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--text-light);
+        }
+
+        .room-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        .room-desc {
+            font-size: 14px;
+            color: var(--text-light);
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .room-specs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        .room-spec {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--text-light);
+        }
+
+        .room-spec svg {
+            width: 16px;
+            height: 16px;
+            stroke: var(--accent);
+            fill: none;
+            stroke-width: 1.5;
+            flex-shrink: 0;
+        }
+
+        .room-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn-book {
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            padding: 14px 30px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-book:hover {
+            background: var(--accent-light);
+            transform: translateY(-2px);
+        }
+
+        .btn-view {
+            background: transparent;
+            color: var(--text-dark);
+            border: 1px solid #ddd;
+            padding: 13px 28px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .btn-view:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .room-image {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .room-image img,
+        .room-image video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s;
+            min-height: 500px;
+        }
+
+        .room-image video {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity 0.35s;
+            pointer-events: none;
+        }
+
+        .room-image:hover img {
+            transform: scale(1.03);
+        }
+
+        .room-image:hover video {
+            opacity: 1;
+        }
+
+        .carousel-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 40px;
+        }
+
+        .carousel-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 1px solid #ddd;
+            background: var(--bg-white);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .carousel-btn:hover {
+            border-color: var(--accent);
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .carousel-btn svg {
+            width: 20px;
+            height: 20px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .carousel-dots {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .carousel-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #ddd;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .carousel-dot.active {
+            background: var(--accent);
+            width: 24px;
+            border-radius: 4px;
+        }
+
+        /* ==================== FACILITIES ==================== */
+        .facilities {
+            padding: 100px 60px;
+            background: var(--bg-white);
+        }
+
+        .facilities-grid {
+            display: grid;
+            grid-template-columns: repeat(6, minmax(0, 1fr));
+            gap: 40px;
+            max-width: 1100px;
+            margin: 0 auto;
+            grid-auto-rows: 1fr;
+            align-items: stretch;
+        }
+
+        .facility-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 30px;
+            border-radius: 14px;
+            transition: all 0.3s;
+            height: 100%;
+            background: #fff;
+            border: 1px solid #eee5d9;
+            box-shadow: 0 10px 28px rgba(26, 26, 26, 0.06);
+            grid-column: span 2;
+        }
+
+        .facility-item:hover {
+            background: #fffdf9;
+            border-color: #e5d2bb;
+            transform: translateY(-4px);
+            box-shadow: 0 16px 34px rgba(26, 26, 26, 0.1);
+        }
+
+        .facility-icon {
+            width: 48px;
+            height: 48px;
+            flex-shrink: 0;
+            border-radius: 50%;
+            background: #f6efe6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .facility-icon svg {
+            width: 26px;
+            height: 26px;
+            stroke: var(--accent);
+            fill: none;
+            stroke-width: 1.5;
+        }
+
+        .facility-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+        }
+
+        .facility-desc {
+            font-size: 14px;
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        .facility-item:nth-child(4) {
+            grid-column: 2 / span 2;
+        }
+
+        .facility-item:nth-child(5) {
+            grid-column: 4 / span 2;
+        }
+
+        /* ==================== VIDEO SECTION ==================== */
+        .video-section {
+            position: relative;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .video-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(26,26,26,0.6);
+        }
+
+        .video-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .video-label {
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 15px;
+        }
+
+        .video-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 40px;
+            color: #fff;
+            margin-bottom: 30px;
+        }
+
+        .video-play {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+        }
+
+        .video-play:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(184, 149, 107, 0.5);
+        }
+
+        .video-play svg {
+            width: 30px;
+            height: 30px;
+            fill: #fff;
+            margin-left: 4px;
+        }
+
+        /* ==================== LOCATION ==================== */
+        .location {
+            padding: 100px 60px;
+            background: var(--bg-beige);
+        }
+
+        .location-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .location-info {
+            padding-right: 40px;
+        }
+
+        .location-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 600;
+            margin-bottom: 25px;
+            color: var(--text-dark);
+        }
+
+        .location-text {
+            font-size: 15px;
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .location-features {
+            list-style: none;
+        }
+
+        .location-features li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 0;
+            font-size: 14px;
+            color: var(--text-dark);
+            border-bottom: 1px solid #e8e4df;
+        }
+
+        .location-features li:last-child {
+            border-bottom: none;
+        }
+
+        .location-features li svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--accent);
+            fill: none;
+            stroke-width: 1.5;
+            flex-shrink: 0;
+        }
+
+        .location-map {
+            border-radius: 4px;
+            overflow: hidden;
+            height: 400px;
+        }
+
+        .location-map iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* ==================== CTA ==================== */
+        .cta-section {
+            padding: 80px 60px;
+            background: var(--primary-dark);
+            text-align: center;
+        }
+
+        .cta-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+
+        .cta-subtitle {
+            font-size: 15px;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 35px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .cta-phone {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            color: var(--accent);
+            text-decoration: none;
+            display: block;
+            margin-top: 25px;
+            transition: color 0.3s;
+        }
+
+        .cta-phone:hover {
+            color: var(--accent-light);
+        }
+
+        /* ==================== FAQ ==================== */
+        .faq {
+            padding: 100px 60px;
+            background: var(--bg-white);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #eee;
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 0;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .faq-question:hover {
+            color: var(--accent);
+        }
+
+        .faq-question h4 {
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .faq-toggle {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            flex-shrink: 0;
+        }
+
+        .faq-toggle svg {
+            width: 14px;
+            height: 14px;
+            stroke: var(--text-light);
+            fill: none;
+            stroke-width: 2;
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-toggle {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .faq-item.active .faq-toggle svg {
+            stroke: #fff;
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+        }
+
+        .faq-answer p {
+            font-size: 14px;
+            color: var(--text-light);
+            line-height: 1.8;
+            padding-bottom: 25px;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+        }
+
+        /* ==================== FOOTER ==================== */
+        .footer {
+            padding: 60px;
+            background: var(--primary-dark);
+            color: rgba(255,255,255,0.6);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-brand .logo-text {
+            margin-bottom: 15px;
+        }
+
+        .footer-brand p {
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 12px;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .footer-social a:hover {
+            border-color: var(--accent);
+            background: var(--accent);
+        }
+
+        .footer-social a svg {
+            width: 16px;
+            height: 16px;
+            fill: rgba(255,255,255,0.7);
+        }
+
+        .footer-social a svg.max-icon {
+            fill: rgba(255,255,255,0.7);
+        }
+
+        .footer-col h4 {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 40px auto 0;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+        }
+
+        .footer-bottom a {
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+        }
+
+        .footer-bottom a:hover {
+            color: var(--accent);
+        }
+
+        /* ==================== MODAL ==================== */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: var(--bg-white);
+            border-radius: 4px;
+            max-width: 500px;
+            width: 90%;
+            padding: 50px;
+            position: relative;
+            animation: modalIn 0.3s ease;
+        }
+
+        @keyframes modalIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 36px;
+            height: 36px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-close svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--text-light);
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .modal h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+
+        .modal p {
+            font-size: 14px;
+            color: var(--text-light);
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid #ddd;
+            font-size: 14px;
+            font-family: 'Inter', sans-serif;
+            transition: border-color 0.3s;
+            background: var(--bg-white);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            padding: 16px;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+
+        .btn-submit:hover {
+            background: var(--accent-light);
+        }
+
+        /* ==================== ANIMATIONS ==================== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ==================== RESPONSIVE ==================== */
+        @media (max-width: 1024px) {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .facilities-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .facility-item:nth-child(5) {
+                grid-column: auto;
+            }
+            .facility-item:nth-child(4) {
+                grid-column: auto;
+            }
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 15px 25px;
+            }
+
+            .header.scrolled {
+                padding: 12px 25px;
+            }
+
+            .nav {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background: rgba(26,26,26,0.98);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 30px;
+            }
+
+            .nav.active {
+                display: flex;
+            }
+
+            .nav a {
+                font-size: 18px;
+            }
+
+            .mobile-toggle {
+                display: flex;
+            }
+
+            .hero-content {
+                padding: 0 25px;
+            }
+
+            .hero-title {
+                font-size: 32px;
+            }
+
+            .hero-subtitle {
+                font-size: 15px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .features {
+                padding: 60px 25px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .welcome {
+                padding: 60px 25px;
+            }
+
+            .welcome-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .welcome-title {
+                font-size: 28px;
+            }
+
+            .highlights {
+                min-height: 420px;
+                height: 65vh;
+            }
+
+            .highlight-slide {
+                padding: 35px 25px 70px;
+            }
+
+            .highlight-caption {
+                font-size: 20px;
+                line-height: 1.4;
+            }
+
+            .highlights-controls {
+                left: 25px;
+                bottom: 20px;
+            }
+
+            .highlight-arrow {
+                width: 42px;
+                height: 42px;
+            }
+
+            .highlight-arrow.prev {
+                left: 12px;
+            }
+
+            .highlight-arrow.next {
+                right: 12px;
+            }
+
+            .rooms {
+                padding: 60px 25px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .room-card {
+                grid-template-columns: 1fr;
+            }
+
+            .room-info {
+                padding: 30px;
+            }
+
+            .room-image img,
+            .room-image video {
+                min-height: 300px;
+            }
+
+            .facilities {
+                padding: 60px 25px;
+            }
+
+            .facilities-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .facility-item:nth-child(5) {
+                grid-column: auto;
+            }
+            .facility-item:nth-child(4) {
+                grid-column: auto;
+            }
+
+            .video-section {
+                height: 350px;
+            }
+
+            .video-title {
+                font-size: 28px;
+            }
+
+            .location {
+                padding: 60px 25px;
+            }
+
+            .location-container {
+                grid-template-columns: 1fr;
+            }
+
+            .location-info {
+                padding-right: 0;
+            }
+
+            .location-title {
+                font-size: 28px;
+            }
+
+            .cta-section {
+                padding: 60px 25px;
+            }
+
+            .cta-title {
+                font-size: 28px;
+            }
+
+            .faq {
+                padding: 60px 25px;
+            }
+
+            .footer {
+                padding: 40px 25px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .modal {
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="header" id="header">
+        <a href="#" class="logo">
+            <svg class="logo-icon" viewBox="0 0 40 40">
+                <rect x="5" y="5" width="30" height="30" rx="2" stroke="#b8956b" fill="none" stroke-width="2"/>
+                <path d="M12 28V16l8-6 8 6v12" stroke="#b8956b" fill="none" stroke-width="2"/>
+                <line x1="20" y1="20" x2="20" y2="28" stroke="#b8956b" stroke-width="2"/>
+            </svg>
+            <div>
+                <div class="logo-text">MONE</div>
+                <div class="logo-sub">Отель · Сочи</div>
+            </div>
+        </a>
+        <nav class="nav" id="nav">
+            <a href="#features">Преимущества</a>
+            <a href="#rooms">Номера</a>
+            <a href="#facilities">Удобства</a>
+            <a href="#location">Расположение</a>
+            <a href="#faq">Вопросы</a>
+            <a href="#footer" class="btn-reservation">Забронировать</a>
+        </nav>
+        <div class="mobile-toggle" id="mobileToggle" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-video-container">
+            <video autoplay muted loop playsinline>
+                <source src="https://raw.githubusercontent.com/Kr4kas-help/Imeg/main/%D0%B3%D0%BB%D0%B0%D0%B2%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="hero-stars">
+                <span>★</span><span>★</span><span>★</span><span>★</span>
+            </div>
+            <h1 class="hero-title">
+                Премиальный отдых в<br><span>Mone Сочи</span>
+            </h1>
+            <p class="hero-subtitle">
+                2 эксклюзивных номера в отеле 4⭐ на Черноморском побережье. 
+                Подогреваемый бассейн круглый год, премиальный сервис и хвойный парк у дома.
+            </p>
+            <div class="hero-buttons">
+                <a href="#" class="btn-primary" onclick="openModal(event)">Забронировать номер</a>
+                <a href="#rooms" class="btn-outline">Смотреть номера</a>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <span>Scroll</span>
+            <div class="line"></div>
+        </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="features" id="features">
+        <div class="features-grid">
+            <div class="feature-item fade-in">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 56 56"><circle cx="28" cy="20" r="10"/><path d="M14 48c0-8 6-14 14-14s14 6 14 14"/><path d="M38 12l4-4M42 16h4M36 20h6"/></svg>
+                </div>
+                <h3 class="feature-title">Идеальная локация</h3>
+                <p class="feature-desc">Адлер, ул. Ленина 217а. 7 минут до аэропорта, 10 минут до станции «Ласточка», 5 минут до моря.</p>
+            </div>
+            <div class="feature-item fade-in">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 56 56"><rect x="8" y="14" width="40" height="28" rx="3"/><path d="M8 22h40"/><circle cx="20" cy="32" r="3"/><path d="M32 30h10M32 34h6"/></svg>
+                </div>
+                <h3 class="feature-title">Комфорт и стиль</h3>
+                <p class="feature-desc">Дизайнерские номера с панорамными окнами, видами на море или горы. Всё для идеального отдыха.</p>
+            </div>
+            <div class="feature-item fade-in">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 56 56"><circle cx="28" cy="16" r="8"/><path d="M16 44c0-6 5-12 12-12s12 6 12 12"/><path d="M40 20l4 4M44 24v4M38 28l4 4"/></svg>
+                </div>
+                <h3 class="feature-title">Премиальный сервис</h3>
+                <p class="feature-desc">Уровень обслуживания выше стандартов 4⭐. Онлайн-заселение за 5 минут, быстрый ресепшен.</p>
+            </div>
+            <div class="feature-item fade-in">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 56 56"><path d="M28 8l6 12 14 2-10 10 2 14-12-6-12 6 2-14L8 22l14-2z"/><path d="M20 8l-4-4M36 8l4-4"/></svg>
+                </div>
+                <h3 class="feature-title">Лучшие цены</h3>
+                <p class="feature-desc">Прямое бронирование от собственника — без наценок посредников. Специальные условия при раннем бронировании.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- WELCOME -->
+    <section class="welcome" id="welcome">
+        <div class="welcome-container">
+            <div class="welcome-images fade-in">
+                <div class="welcome-img">
+                    <img src="https://raw.githubusercontent.com/Kr4kas-help/Imeg/main/hotel_502409_2c65bfd23ebf4d78830fd0b6b712679c.jpg" alt="Номер в отеле MONE">
+                </div>
+                <div class="welcome-img">
+                    <img src="https://raw.githubusercontent.com/Kr4kas-help/Imeg/main/hotel_502409_4798a09c6b08ab2128081a3e76d0f99f.jpg" alt="Интерьер номера">
+                </div>
+                <div class="welcome-img">
+                    <img src="https://raw.githubusercontent.com/Kr4kas-help/Imeg/main/ak-mone-sochi-4.jpg" alt="Вид из номера">
+                </div>
+            </div>
+            <div class="fade-in">
+                <div class="welcome-label">Добро пожаловать в MONE</div>
+                <h2 class="welcome-title">Люкс-отдых в сердце Адлера</h2>
+                <p class="welcome-text">
+                    Отель MONE расположен на Черноморском побережье в окружении хвойного парка с реликтовыми деревьями. 
+                    Два уникальных номера с дизайнерским интерьером предлагают всё необходимое для идеального отпуска: 
+                    от подогреваемого бассейна до завтраков «шведский стол».
+                </p>
+                <p class="welcome-text">
+                    Зимой — горнолыжные курорты Красной Поляны в 40 минутах. Летом — море, парк и барбекю-зона. 
+                    Круглогодичный комфорт для семьи, пары или соло-путешествия.
+                </p>
+                <a href="#rooms" class="btn-read-more">
+                    Выбрать номер
+                    <svg viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" fill="none" stroke-width="1.5"/></svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- HIGHLIGHTS -->
+    <section class="highlights">
+        <div class="highlights-track" id="highlightsTrack">
+            <article class="highlight-slide">
+                <img src="https://raw.githubusercontent.com/Kr4kas-help/block-4/main/(%D0%97%D0%BE%D0%BD%D0%B0%20%D0%BE%D1%82%D0%B4%D1%8B%D1%85%D0%B0%20).png" alt="Зона отдыха">
+                <p class="highlight-caption">Гостям доступны зоны отдыха, фитнес, детские пространства и площадки с продуманной инфраструктурой для комфортного отдыха всей семьи в любое время года.</p>
+            </article>
+            <article class="highlight-slide">
+                <img src="https://raw.githubusercontent.com/Kr4kas-help/block-4/main/%D0%A1%D0%BF%D0%BE%D1%80%D1%82%D0%B8%D0%B2%D0%BD%D1%8B%D0%B9%20%D0%B7%D0%B0%D0%BB.png" alt="Спортивный зал">
+                <p class="highlight-caption">Гостям доступны зоны отдыха, фитнес, детские пространства и площадки с продуманной инфраструктурой для комфортного отдыха всей семьи в любое время года.</p>
+            </article>
+            <article class="highlight-slide">
+                <img src="https://raw.githubusercontent.com/Kr4kas-help/block-4/main/%D0%B4%D0%B5%D1%82%D1%81%D0%BA%D0%B0%D1%8F%20%D0%BA%D0%BE%D0%BC%D0%BD%D0%B0%D1%82%D0%B0%20.png" alt="Детская комната">
+                <p class="highlight-caption">Гостям доступны зоны отдыха, фитнес, детские пространства и площадки с продуманной инфраструктурой для комфортного отдыха всей семьи в любое время года.</p>
+            </article>
+            <article class="highlight-slide">
+                <img src="https://raw.githubusercontent.com/Kr4kas-help/block-4/main/%D0%94%D0%B5%D1%82%D1%81%D0%BA%D0%B0%D1%8F%20%D0%BF%D0%BB%D0%BE%D0%B7%D0%B0%D0%B4%D0%BA%D0%B0.png" alt="Детская площадка">
+                <p class="highlight-caption">Гостям доступны зоны отдыха, фитнес, детские пространства и площадки с продуманной инфраструктурой для комфортного отдыха всей семьи в любое время года.</p>
+            </article>
+        </div>
+        <button class="highlight-arrow prev" onclick="prevHighlight()" aria-label="Предыдущий слайд">
+            <svg viewBox="0 0 20 20"><path d="M12.5 4L6.5 10l6 6"/></svg>
+        </button>
+        <button class="highlight-arrow next" onclick="nextHighlight()" aria-label="Следующий слайд">
+            <svg viewBox="0 0 20 20"><path d="M7.5 4l6 6-6 6"/></svg>
+        </button>
+        <div class="highlights-controls">
+            <button class="highlight-dot active" onclick="goToHighlight(0)" aria-label="Слайд 1"></button>
+            <button class="highlight-dot" onclick="goToHighlight(1)" aria-label="Слайд 2"></button>
+            <button class="highlight-dot" onclick="goToHighlight(2)" aria-label="Слайд 3"></button>
+            <button class="highlight-dot" onclick="goToHighlight(3)" aria-label="Слайд 4"></button>
+        </div>
+    </section>
+
+    <!-- ROOMS -->
+    <section class="rooms" id="rooms">
+        <div class="section-header fade-in">
+            <div class="section-label">Эксклюзивные предложения</div>
+            <h2 class="section-title">Номера в отеле MONE</h2>
+        </div>
+        <div class="rooms-carousel">
+            <div class="rooms-track" id="roomsTrack">
+                <!-- Room 1 -->
+                <div class="room-card">
+                    <div class="room-info">
+                        <h3 class="room-name">Студия «Комфорт» с видом на парк</h3>
+                        <p class="room-desc">
+                            Просторная студия с дизайнерским интерьером и панорамным окном на хвойный парк. 
+                            Большая кровать King Size, рабочая зона, полностью оборудованная ванная комната. 
+                            Идеально для пары или соло-путешественника.
+                        </p>
+                        <div class="room-specs">
+                            <div class="room-spec">
+                                <svg viewBox="0 0 16 16"><rect x="2" y="2" width="12" height="12" rx="1"/></svg>
+                                28 м²
+                            </div>
+                            <div class="room-spec">
+                                <svg viewBox="0 0 16 16"><path d="M2 8h12M4 4l-2 4 2 4M12 4l2 4-2 4"/></svg>
+                                Вид на парк
+                            </div>
+                            <div class="room-spec">
+                                <svg viewBox="0 0 16 16"><path d="M3 10h10v3H3zM3 10V6a2 2 0 012-2h6a2 2 0 012 2v4"/></svg>
+                                2 взрослых
+                            </div>
+                            <div class="room-spec">
+                                <svg viewBox="0 0 16 16"><path d="M2 4h12M4 4v8M12 4v8M2 12h12"/></svg>
+                                Wi-Fi, TV, кондиционер
+                            </div>
+                        </div>
+                        <div class="room-buttons">
+                            <a href="#" class="btn-book" onclick="openModal(event)">Забронировать</a>
+                            <a href="#" class="btn-view">Подробнее</a>
+                        </div>
+                    </div>
+                    <div class="room-image">
+                        <img src="https://raw.githubusercontent.com/Kr4kas-help/Imeg/main/hotel_502409_2c65bfd23ebf4d78830fd0b6b712679c.jpg" alt="Студия Комфорт">
+                        <video muted loop playsinline preload="metadata">
+                            <source src="https://raw.githubusercontent.com/Kr4kas-help/block-4/main/1%20%D0%B0%D0%BD%D0%BA%D0%B5%D1%82%D0%B0%20.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+
+                <!-- Room 2 -->
+                <div class="room-card">
+                    <div class="room-info">
+                        <h3 class="room-name">Делюкс «Премиум» с балконом</h3>
+                        <p class="room-desc">
+                            Просторный номер Делюкс с отдельным балконом и видом на море или горы. 
+                            Зона отдыха с диваном, мини-бар, кофемашина. Увеличенная ванная комната 
+                            с тропическим душем и банными принадлежностями премиум-класса.
+                        </p>
+                        <div class="room-specs">
+                            <div class="room-spec">
+                                <svg viewBox="0 0 16 16"><rect x="2" y="2" width="12" height="12" rx="1"/></svg>
+                                38 м²
+                            </div>
+                            <div class="room-spec">
+                                <svg viewBox="0 0 16 16"><path d="M2 8h12M4 4l-2 4 2 4M12 4l2 4-2 4"/></svg>
+                                Вид на море/горы
+                            </div>
+                            <div class="room-spec">
+                                <svg viewBox="0 0 16 16"><path d="M3 10h10v3H3zM3 10V6a2 2 0 012-2h6a2 2 0 012 2v4"/></svg>
+                                2 взрослых + 1 ребёнок
+                            </div>
+                            <div class="room-spec">
+                                <svg viewBox="0 0 16 16"><path d="M2 4h12M4 4v8M12 4v8M2 12h12"/></svg>
+                                Балкон, мини-бар
+                            </div>
+                        </div>
+                        <div class="room-buttons">
+                            <a href="#" class="btn-book" onclick="openModal(event)">Забронировать</a>
+                            <a href="#" class="btn-view">Подробнее</a>
+                        </div>
+                    </div>
+                    <div class="room-image">
+                        <img src="https://raw.githubusercontent.com/Kr4kas-help/Imeg/main/hotel_502409_4798a09c6b08ab2128081a3e76d0f99f.jpg" alt="Делюкс Премиум">
+                        <video muted loop playsinline preload="metadata">
+                            <source src="https://raw.githubusercontent.com/Kr4kas-help/block-4/main/2%20%D0%B0%D0%BD%D0%BA%D0%B5%D1%82%D0%B0%20.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+            </div>
+
+            <div class="carousel-controls">
+                <button class="carousel-btn" onclick="prevRoom()">
+                    <svg viewBox="0 0 20 20"><path d="M13 4l-6 6 6 6"/></svg>
+                </button>
+                <div class="carousel-dots">
+                    <div class="carousel-dot active" onclick="goToRoom(0)"></div>
+                    <div class="carousel-dot" onclick="goToRoom(1)"></div>
+                </div>
+                <button class="carousel-btn" onclick="nextRoom()">
+                    <svg viewBox="0 0 20 20"><path d="M7 4l6 6-6 6"/></svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FACILITIES -->
+    <section class="facilities" id="facilities">
+        <div class="section-header fade-in">
+            <div class="section-label">Всё для вашего комфорта</div>
+            <h2 class="section-title">Удобства и сервисы</h2>
+        </div>
+        <div class="facilities-grid">
+            <div class="facility-item fade-in">
+                <div class="facility-icon">
+                    <svg viewBox="0 0 48 48"><path d="M8 36h32M12 36V20a12 12 0 0124 0v16"/><circle cx="24" cy="14" r="4"/><path d="M16 36v-4a8 8 0 0116 0v4"/></svg>
+                </div>
+                <div>
+                    <h4 class="facility-title">Подогреваемый бассейн</h4>
+                    <p class="facility-desc">Открытый бассейн с подогревом до +29°C круглый год. Спасатели на дежурстве, махровые халаты в номерах, бар с коктейлями у бассейна.</p>
+                </div>
+            </div>
+            <div class="facility-item fade-in">
+                <div class="facility-icon">
+                    <svg viewBox="0 0 48 48"><path d="M8 32h32M16 32V16h16v16"/><path d="M20 16v-4h8v4"/><circle cx="24" cy="10" r="2"/></svg>
+                </div>
+                <div>
+                    <h4 class="facility-title">Ресторан и бар</h4>
+                    <p class="facility-desc">Завтраки «шведский стол» (8:00–11:00). Ресторан A la Carte (12:30–23:00). Детское меню, винная и барная карты.</p>
+                </div>
+            </div>
+            <div class="facility-item fade-in">
+                <div class="facility-icon">
+                    <svg viewBox="0 0 48 48"><rect x="8" y="20" width="32" height="16" rx="2"/><path d="M12 20v-4a4 4 0 014-4h16a4 4 0 014 4v4"/><circle cx="16" cy="30" r="2"/><circle cx="32" cy="30" r="2"/></svg>
+                </div>
+                <div>
+                    <h4 class="facility-title">Парковка</h4>
+                    <p class="facility-desc">Бесплатная охраняемая парковка для гостей отеля. Удобный подъезд к территории. Трансфер от аэропорта по запросу.</p>
+                </div>
+            </div>
+            <div class="facility-item fade-in">
+                <div class="facility-icon">
+                    <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="16"/><path d="M24 12v12l8 4"/></svg>
+                </div>
+                <div>
+                    <h4 class="facility-title">Фитнес-центр</h4>
+                    <p class="facility-desc">Современное оборудование: кардио-зона, силовые тренажёры, свободные веса. Доступ для гостей 24/7. Персональные тренировки по запросу.</p>
+                </div>
+            </div>
+            <div class="facility-item fade-in">
+                <div class="facility-icon">
+                    <svg viewBox="0 0 48 48"><path d="M8 36h32M12 36V24c0-6 5-12 12-12s12 6 12 12v12"/><path d="M18 36v-4a6 6 0 0112 0v4"/></svg>
+                </div>
+                <div>
+                    <h4 class="facility-title">Семейная инфраструктура</h4>
+                    <p class="facility-desc">Детская площадка, игровой клуб с аниматором, настольные игры. Реликтовый парк с зонами отдыха. Барбекю-зона на территории.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VIDEO SECTION -->
+    <section class="video-section">
+        <img class="video-bg" src="https://raw.githubusercontent.com/Kr4kas-help/Imeg/main/ebade450baac60a838a174c24a2bb6d3.jpg" alt="Отель MONE">
+        <div class="video-overlay"></div>
+        <div class="video-content fade-in">
+            <div class="video-label">Видео отеля</div>
+            <h2 class="video-title">Откройте MONE для себя</h2>
+            <button class="video-play" onclick="playVideo()">
+                <svg viewBox="0 0 30 30"><polygon points="10,6 26,15 10,24"/></svg>
+            </button>
+        </div>
+    </section>
+
+    <!-- LOCATION -->
+    <section class="location" id="location">
+        <div class="location-container">
+            <div class="location-info fade-in">
+                <div class="section-label">Как добраться</div>
+                <h2 class="location-title">Удобное расположение в Адлере</h2>
+                <p class="location-text">
+                    Отель MONE находится в тихом районе Адлера, окружённом хвойным парком. 
+                    До моря — 5 минут пешком. До аэропорта Сочи — 7 минут на машине. 
+                    Горнолыжные курорты Красной Поляны — 40 минут.
+                </p>
+                <ul class="location-features">
+                    <li>
+                        <svg viewBox="0 0 20 20"><path d="M10 2C6 2 3 5.5 3 9c0 5 7 11 7 11s7-6 7-11c0-3.5-3-7-7-7z"/><circle cx="10" cy="9" r="2"/></svg>
+                        г. Сочи, Адлер, ул. Ленина 217а
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 20 20"><path d="M4 16V6l6-4 6 4v10l-6 4z"/><path d="M4 16h12M8 10h4"/></svg>
+                        7 минут от аэропорта Сочи
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 20 20"><rect x="3" y="5" width="14" height="10" rx="2"/><path d="M7 15v2M13 15v2M5 5V3h10v2"/></svg>
+                        10 минут от ст. «Ласточка»
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 20 20"><path d="M3 14h14M5 14V8a5 5 0 0110 0v6"/></svg>
+                        5 минут до Черного моря
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 20 20"><path d="M10 2l2 6h6l-5 4 2 6-5-4-5 4 2-6-5-4h6z"/></svg>
+                        40 минут до Красной Поляны
+                    </li>
+                </ul>
+            </div>
+            <div class="location-map fade-in">
+                <iframe src="https://yandex.ru/map-widget/v1/?ll=39.900138%2C43.462446&amp;z=15&amp;pt=39.900138%2C43.462446%2Cpm2rdm" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq" id="faq">
+        <div class="faq-container">
+            <div class="section-header fade-in">
+                <div class="section-label">Ответы на вопросы</div>
+                <h2 class="section-title">Часто задаваемые вопросы</h2>
+            </div>
+
+            <div class="faq-item active">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <h4>Как проходит заселение?</h4>
+                    <div class="faq-toggle">
+                        <svg viewBox="0 0 14 14"><path d="M1 7h12M7 1v12"/></svg>
+                    </div>
+                </div>
+                <div class="faq-answer">
+                    <p>Онлайн-регистрация занимает 5–7 минут. Вы заполняете данные заранее, а на месте получаете ключ через автоматический киоск за 2 минуты. Без очередей на ресепшене.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <h4>В какое время заезд и выезд?</h4>
+                    <div class="faq-toggle">
+                        <svg viewBox="0 0 14 14"><path d="M1 7h12M7 1v12"/></svg>
+                    </div>
+                </div>
+                <div class="faq-answer">
+                    <p>Заезд с 14:00, выезд до 12:00. Ранний заезд и поздний выезд возможны по запросу — уточняйте при бронировании. Стоимость уточняйте у менеджера.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <h4>Можно ли с детьми?</h4>
+                    <div class="faq-toggle">
+                        <svg viewBox="0 0 14 14"><path d="M1 7h12M7 1v12"/></svg>
+                    </div>
+                </div>
+                <div class="faq-answer">
+                    <p>Конечно! Отель ориентирован на семейный отдых. Детская площадка, игровой клуб с аниматором, детское меню в ресторане, детская зона в бассейне (открывается с 20 апреля).</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <h4>Бассейн работает зимой?</h4>
+                    <div class="faq-toggle">
+                        <svg viewBox="0 0 14 14"><path d="M1 7h12M7 1v12"/></svg>
+                    </div>
+                </div>
+                <div class="faq-answer">
+                    <p>Да, бассейн подогревается до +29°C круглый год. Зимний сезон — с ноября по март. Спасатели на дежурстве, махровые халаты и полотенца предоставляются.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <h4>Есть ли парковка?</h4>
+                    <div class="faq-toggle">
+                        <svg viewBox="0 0 14 14"><path d="M1 7h12M7 1v12"/></svg>
+                    </div>
+                </div>
+                <div class="faq-answer">
+                    <p>Да, бесплатная охраняемая парковка на территории отеля. Также доступен трансфер от аэропорта по предварительному заказу.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <h4>Как забронировать номер?</h4>
+                    <div class="faq-toggle">
+                        <svg viewBox="0 0 14 14"><path d="M1 7h12M7 1v12"/></svg>
+                    </div>
+                </div>
+                <div class="faq-answer">
+                    <p>Нажмите кнопку «Забронировать» на сайте,и свяжитесь по телефону +7 922 544-55-63 или напишите на . Бронирование напрямую от собственника — без наценок.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="fade-in">
+            <div class="cta-buttons">
+                <a href="https://t.me/arzamas_17" class="btn-primary" target="_blank" rel="noopener">Telegram</a>
+                <a href="https://max.ru/+79225445563" class="btn-outline" target="_blank" rel="noopener">MAX</a>
+            </div>
+            <a href="tel:+79225445563" class="cta-phone">+7 922 544-55-63</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer" id="footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="logo-text" style="font-family:'Playfair Display',serif; font-size:24px; font-weight:600; color:#fff; letter-spacing:3px; margin-bottom:15px;">MONE</div>
+                <p>2 эксклюзивных номера в премиальном отеле 4⭐ на Черноморском побережье. .</p>
+                <p style="color:#fff; text-transform:uppercase; letter-spacing:1px; font-weight:600;">ПРЯМОЕ БРАНИРОВАНИЕ ОТ СОБСТВЕННИКА!</p>
+                <div class="footer-social">
+                    <a href="https://t.me/arzamas_17" aria-label="Telegram" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24"><path d="M3 12l18-7-4 17-5-5-4 3z" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+                    </a>
+                    <a href="https://max.ru/+79225445563" aria-label="MAX" target="_blank" rel="noopener">
+                        <svg class="max-icon" viewBox="0 0 24 24"><path d="M3 5h4.5L12 12l4.5-7H21l-6.7 10L21 19h-4.4L12 12.3 7.4 19H3l6.8-4L3 5z"/></svg>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Навигация</h4>
+                <ul>
+                    <li><a href="#features">Преимущества</a></li>
+                    <li><a href="#rooms">Номера</a></li>
+                    <li><a href="#facilities">Удобства</a></li>
+                    <li><a href="#location">Расположение</a></li>
+                    <li><a href="#faq">Вопросы</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Контакты</h4>
+                <ul>
+                    <li><a href="tel:+79225445563">+7 922 544-55-63</a></li>
+                    <li><a href="https://t.me/arzamas_17" target="_blank" rel="noopener">Telegram: @arzamas_17</a></li>
+                    <li><a href="https://max.ru/+79225445563" target="_blank" rel="noopener">MAX: +7 922 544-55-63</a></li>
+                    <li><a href="#">г. Сочи, Адлер,<br>ул. Ленина 217а</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Информация</h4>
+                <ul>
+                    <li><a href="#">Правила проживания</a></li>
+                    <li><a href="#">Политика конфиденциальности</a></li>
+                    <li><a href="#">Правовая информация</a></li>
+                    <li><a href="#">Карта отеля</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2026 MONE Сочи. Все права защищены.</span>
+            <span>Отель MONE · Адлер, Сочи</span>
+        </div>
+    </footer>
+
+    <!-- MODAL -->
+    <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+        <div class="modal" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeModal(event)">
+                <svg viewBox="0 0 20 20"><path d="M4 4l12 12M16 4L4 16"/></svg>
+            </button>
+            <h3>Бронирование номера</h3>
+            <p>Заполните форму и мы свяжемся с вами для подтверждения</p>
+            <form onsubmit="submitForm(event)">
+                <div class="form-group">
+                    <label>Ваше имя</label>
+                    <input type="text" placeholder="Иван Иванов" required>
+                </div>
+                <div class="form-group">
+                    <label>Телефон</label>
+                    <input type="tel" placeholder="+7 (___) ___-__-__" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Заезд</label>
+                        <input type="date" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Выезд</label>
+                        <input type="date" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Выберите номер</label>
+                    <select required>
+                        <option value="">— Выберите номер —</option>
+                        <option value="studio">Студия «Комфорт»</option>
+                        <option value="deluxe">Делюкс «Премиум»</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Взрослых</label>
+                        <select>
+                            <option>1</option>
+                            <option selected>2</option>
+                            <option>3</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Детей</label>
+                        <select>
+                            <option selected>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="btn-submit">Отправить заявку</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Header scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 80) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu
+        function toggleMenu() {
+            const nav = document.getElementById('nav');
+            const toggle = document.getElementById('mobileToggle');
+            nav.classList.toggle('active');
+            toggle.classList.toggle('active');
+        }
+
+        // Close mobile menu on link click
+        document.querySelectorAll('.nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('nav').classList.remove('active');
+            });
+        });
+
+        // Rooms carousel
+        let currentRoom = 0;
+        const totalRooms = 2;
+        const track = document.getElementById('roomsTrack');
+        const dots = document.querySelectorAll('.carousel-dot');
+
+        function updateCarousel() {
+            track.style.transform = `translateX(-${currentRoom * 100}%)`;
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentRoom);
+            });
+        }
+
+        function nextRoom() {
+            currentRoom = (currentRoom + 1) % totalRooms;
+            updateCarousel();
+        }
+
+        function prevRoom() {
+            currentRoom = (currentRoom - 1 + totalRooms) % totalRooms;
+            updateCarousel();
+        }
+
+        function goToRoom(index) {
+            currentRoom = index;
+            updateCarousel();
+        }
+
+        // Room card hover videos
+        document.querySelectorAll('.room-image').forEach((container) => {
+            const video = container.querySelector('video');
+            if (!video) return;
+            container.addEventListener('mouseenter', () => {
+                video.currentTime = 0;
+                video.play().catch(() => {});
+            });
+            container.addEventListener('mouseleave', () => {
+                video.pause();
+                video.currentTime = 0;
+            });
+        });
+
+        // Auto-rotate carousel
+        let carouselInterval = setInterval(nextRoom, 6000);
+
+        // Pause on hover
+        document.querySelector('.rooms-carousel').addEventListener('mouseenter', () => {
+            clearInterval(carouselInterval);
+        });
+
+        document.querySelector('.rooms-carousel').addEventListener('mouseleave', () => {
+            carouselInterval = setInterval(nextRoom, 6000);
+        });
+
+        // Modal
+        function openModal(e) {
+            e.preventDefault();
+            document.getElementById('modalOverlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(e) {
+            e.preventDefault();
+            document.getElementById('modalOverlay').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Form submit
+        function submitForm(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('.btn-submit');
+            btn.textContent = 'Заявка отправлена ✓';
+            btn.style.background = '#4CAF50';
+            setTimeout(() => {
+                closeModal(e);
+                btn.textContent = 'Отправить заявку';
+                btn.style.background = '';
+                e.target.reset();
+            }, 2000);
+        }
+
+        // FAQ toggle
+        function toggleFaq(el) {
+            const item = el.parentElement;
+            const wasActive = item.classList.contains('active');
+            
+            document.querySelectorAll('.faq-item').forEach(faq => {
+                faq.classList.remove('active');
+            });
+            
+            if (!wasActive) {
+                item.classList.add('active');
+            }
+        }
+
+        // Video play
+        function playVideo() {
+            const videoUrl = 'https://rutube.ru/play/embed/03390bf2094fe2ab7fbf888c518a805c';
+            const modal = document.getElementById('modalOverlay');
+            const modalContent = modal.querySelector('.modal');
+            
+            modal.innerHTML = `
+                <button class="modal-close" onclick="closeModal(event)" style="position:absolute;top:20px;right:20px;z-index:10;">
+                    <svg viewBox="0 0 20 20" width="24" height="24"><path d="M4 4l12 12M16 4L4 16" stroke="#fff" fill="none" stroke-width="2"/></svg>
+                </button>
+                <iframe src="${videoUrl}" style="width:90vw;max-width:980px;height:72vh;border:0;border-radius:4px;background:#000;" allow="autoplay; fullscreen" allowfullscreen></iframe>
+            `;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Highlights carousel
+        const highlightsTrack = document.getElementById('highlightsTrack');
+        const highlightDots = document.querySelectorAll('.highlight-dot');
+        const totalHighlights = highlightDots.length;
+        let currentHighlight = 0;
+
+        function updateHighlights() {
+            highlightsTrack.style.transform = `translateX(-${currentHighlight * 100}%)`;
+            highlightDots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentHighlight);
+            });
+        }
+
+        function goToHighlight(index) {
+            currentHighlight = index;
+            updateHighlights();
+        }
+
+        function nextHighlight() {
+            currentHighlight = (currentHighlight + 1) % totalHighlights;
+            updateHighlights();
+        }
+
+        function prevHighlight() {
+            currentHighlight = (currentHighlight - 1 + totalHighlights) % totalHighlights;
+            updateHighlights();
+        }
+
+        setInterval(nextHighlight, 5000);
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Touch swipe for carousel
+        let touchStartX = 0;
+        let touchEndX = 0;
+        const carousel = document.querySelector('.rooms-carousel');
+
+        carousel.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        carousel.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            const diff = touchStartX - touchEndX;
+            if (Math.abs(diff) > 50) {
+                if (diff > 0) nextRoom();
+                else prevRoom();
+            }
+        }, { passive: true });
+
+        // Set minimum dates for booking form
+        const today = new Date().toISOString().split('T')[0];
+        document.querySelectorAll('input[type="date"]').forEach(input => {
+            input.setAttribute('min', today);
+        });
+    </script>
+</body>
+</html>
+
